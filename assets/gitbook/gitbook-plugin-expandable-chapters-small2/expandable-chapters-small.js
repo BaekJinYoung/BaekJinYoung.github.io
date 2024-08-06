@@ -2,7 +2,6 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
     var PLUGIN = 'expandable-chapter-small2',
         TOGGLE_CLASSNAME = 'expanded',
         CHAPTER = '.chapter',
-        // ARTICLES = '.articles',
         ARTICLES = '.chapter ul',
         FOLDABLE = '.chapter, .chapter li',
         ARTICLE_CHILDREN = 'ul',
@@ -16,33 +15,25 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         if (config && config[PLUGIN]) {
             articlesExpand = config[PLUGIN].articlesExpand || false;
         }
-        if (articlesExpand) {
-            $(ARTICLES)
-                .parent(CHAPTER)
-                .find(ARTICLE_CHILDREN)
-                .prev()
-                .css('cursor', 'pointer')
-                .on('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggle($(e.target).closest(FOLDABLE));
-                })
-                .append(TRIGGER_TEMPLATE);
-        } else {
-            $(ARTICLES)
-                .parent(CHAPTER)
-                .find(ARTICLE_CHILDREN)
-                .prev()
-                .append(
-                    $(TRIGGER_TEMPLATE)
-                        .on('click', function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            toggle($(e.target).closest(FOLDABLE));
-                        })
-                );
-        }
 
+        // Add trigger for chapter elements
+        $(CHAPTER).each(function () {
+            var $chapter = $(this);
+            var $children = $chapter.find(ARTICLE_CHILDREN);
+            if ($children.length) {
+                $chapter
+                    .find('> a, > span')
+                    .css('cursor', 'pointer')
+                    .append(TRIGGER_TEMPLATE)
+                    .on('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleChapter($chapter);
+                    });
+            }
+        });
+
+        // Add trigger for li elements
         $(CHAPTER + ' li').each(function () {
             var $li = $(this);
             var $children = $li.find(ARTICLE_CHILDREN);
@@ -54,51 +45,72 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
                     .on('click', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
-                        toggle($li);
+                        toggleLi($li);
                     });
             }
         });
 
         expand(lsItem());
 
-        // expand current selected chapter with it's parents
+        // expand current selected chapter with its parents
         var activeChapter = $(CHAPTER + '.active');
         expand(activeChapter);
 
         // expand current selected chapter's children
-        // expand(activeChapter.parents(CHAPTER));
         activeChapter.find(ARTICLE_CHILDREN).closest(FOLDABLE).each(function () {
             expand($(this));
         });
     }
 
-    var toggle = function ($chapter) {
+    var toggleChapter = function ($chapter) {
         if ($chapter.hasClass('expanded')) {
-            collapse($chapter);
+            collapseChapter($chapter);
         } else {
-            expand($chapter);
+            expandChapter($chapter);
         }
     }
 
-    var collapse = function ($chapter) {
+    var toggleLi = function ($li) {
+        if ($li.hasClass('expanded')) {
+            collapseLi($li);
+        } else {
+            expandLi($li);
+        }
+    }
+
+    var collapseChapter = function ($chapter) {
         if ($chapter.length && $chapter.hasClass(TOGGLE_CLASSNAME)) {
             $chapter.removeClass(TOGGLE_CLASSNAME);
             lsItem($chapter);
         }
     }
 
-    var expand = function ($chapter) {
+    var expandChapter = function ($chapter) {
         if ($chapter.length && !$chapter.hasClass(TOGGLE_CLASSNAME)) {
             $chapter.addClass(TOGGLE_CLASSNAME);
             lsItem($chapter);
         }
     }
 
+    var collapseLi = function ($li) {
+        if ($li.length && $li.hasClass(TOGGLE_CLASSNAME)) {
+            $li.removeClass(TOGGLE_CLASSNAME);
+            lsItem($li);
+        }
+    }
+
+    var expandLi = function ($li) {
+        if ($li.length && !$li.hasClass(TOGGLE_CLASSNAME)) {
+            $li.addClass(TOGGLE_CLASSNAME);
+            lsItem($li);
+        }
+    }
+
     var lsItem = function () {
         var map = JSON.parse(localStorage.getItem(LS_NAMESPACE)) || {}
         if (arguments.length) {
-            var $chapters = arguments[0];
-            $chapters.each(function (index, element) {
+            var $elements = arguments[0];
+            $elements.each(function (index, element) {
                 var level = $(this).data('level');
                 var value = $(this).hasClass(TOGGLE_CLASSNAME);
                 map[level] = value;
@@ -114,6 +126,6 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
     }
 
     gitbook.events.bind('page.change', function () {
-        init()
+        init();
     });
 });

@@ -3,13 +3,17 @@
 .book .book-summary .chapter li > ul {
 	overflow: hidden;
 	max-height: 0px;
-	transition: max-height 0.3s ease; /* 부드러운 전환 효과 */
+	transition: max-height 0.3s ease;
 }
 
-/* 확장 시 보이기 */
-.book .book-summary .chapter.expanded ul,
+/* chapter 클릭 시 li 보이기 */
+.book .book-summary .chapter.expanded > ul {
+	max-height: 9999px; /* chapter의 하위 목록이 보이도록 설정 */
+}
+
+/* li 클릭 시 ul 보이기 */
 .book .book-summary .chapter li.expanded > ul {
-	max-height: 9999px;
+	max-height: 9999px; /* li의 하위 목록이 보이도록 설정 */
 }
 
 /* 트리거 버튼 스타일 */
@@ -26,10 +30,4 @@
 /* 확장된 상태에서 아이콘 변경 */
 .book .book-summary .expanded > .exc-trigger:before {
 	content: "\f107"; /* FontAwesome 아이콘 */
-}
-
-/* 링크와 스팬의 패딩 조정 */
-.book .book-summary ul.summary li a,
-.book .book-summary ul.summary li span {
-	padding-left: 30px;
 }
