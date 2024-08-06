@@ -9,107 +9,79 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         LS_NAMESPACE = 'expChapters';
 
     var init = function () {
-        // adding the trigger element to each ARTICLES parent and binding the event
         var config = gitbook.state.config.pluginsConfig || {};
         var articlesExpand = false;
         if (config && config[PLUGIN]) {
             articlesExpand = config[PLUGIN].articlesExpand || false;
         }
 
-        // Add triggers and event handlers to chapters
-        $(ARTICLES)
-            .parent(CHAPTER)
-            .find(ARTICLE_CHILDREN)
-            .prev()
-            .css('cursor', 'pointer')
+        // Adding the trigger element to each ARTICLES parent and binding the event
+        if (articlesExpand) {
+            $(ARTICLES)
+                .parent(CHAPTER)
+                .find(ARTICLE_CHILDREN)
+                .prev()
+                .css('cursor', 'pointer')
+                .on('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggle($(e.target).closest(FOLDABLE));
+                })
+                .append(TRIGGER_TEMPLATE);
+        } else {
+            $(ARTICLES)
+                .parent(CHAPTER)
+                .find(ARTICLE_CHILDREN)
+                .prev()
+                .append(
+                    $(TRIGGER_TEMPLATE)
+                        .on('click', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            toggle($(e.target).closest(FOLDABLE));
+                        })
+                );
+        }
+
+        // Adding click event to li elements to toggle their ul children
+        $(CHAPTER + ' li').css('cursor', 'pointer')
             .on('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                toggle($(e.target).closest(CHAPTER));
-            })
-            .append(TRIGGER_TEMPLATE);
-
-            // Add triggers and event handlers to list items
-        $(CHAPTER + ' li')
-            .find(ARTICLE_CHILDREN)
-            .prev()
-            .css('cursor', 'pointer')
-            .on('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleLi($(e.target).closest('li'));
-            })
-            .append(TRIGGER_TEMPLATE);
-
-        // Initially hide all articles and list items
-        $(ARTICLE_CHILDREN).hide();
+                toggle($(this).find(ARTICLE_CHILDREN));
+            });
 
         expand(lsItem());
 
-        // expand current selected chapter with its parents
+        // Expand current selected chapter with its parents
         var activeChapter = $(CHAPTER + '.active');
         expand(activeChapter);
 
-        // expand current selected chapter's children
+        // Expand current selected chapter's children
         activeChapter.find(ARTICLE_CHILDREN).closest(FOLDABLE).each(function () {
             expand($(this));
         });
-
-        // expand current selected li with its parents
-        var activeLi = $('li.active');
-        expandLi(activeLi);
-
-        // expand current selected li's children
-        activeLi.find(ARTICLE_CHILDREN).closest('li').each(function () {
-            expandLi($(this));
-        });
     }
 
-    var toggle = function ($chapter) {
-        if ($chapter.hasClass(TOGGLE_CLASSNAME)) {
-            collapse($chapter);
+    var toggle = function ($element) {
+        if ($element.hasClass('expanded')) {
+            collapse($element);
         } else {
-            expand($chapter);
+            expand($element);
         }
     }
 
-    var toggleLi = function ($li) {
-        if ($li.hasClass(TOGGLE_CLASSNAME)) {
-            collapseLi($li);
-        } else {
-            expandLi($li);
+    var collapse = function ($element) {
+        if ($element.length && $element.hasClass(TOGGLE_CLASSNAME)) {
+            $element.removeClass(TOGGLE_CLASSNAME);
+            lsItem($element);
         }
     }
 
-    var collapse = function ($chapter) {
-        if ($chapter.length && $chapter.hasClass(TOGGLE_CLASSNAME)) {
-            $chapter.removeClass(TOGGLE_CLASSNAME);
-            $chapter.find(ARTICLE_CHILDREN).hide();
-            lsItem($chapter);
-        }
-    }
-
-    var collapseLi = function ($li) {
-        if ($li.length && $li.hasClass(TOGGLE_CLASSNAME)) {
-            $li.removeClass(TOGGLE_CLASSNAME);
-            $li.find(ARTICLE_CHILDREN).hide();
-            lsItem($li);
-        }
-    }
-
-    var expand = function ($chapter) {
-        if ($chapter.length && !$chapter.hasClass(TOGGLE_CLASSNAME)) {
-            $chapter.addClass(TOGGLE_CLASSNAME);
-            $chapter.find(ARTICLE_CHILDREN).show();
-            lsItem($chapter);
-        }
-    }
-
-    var expandLi = function ($li) {
-        if ($li.length && !$li.hasClass(TOGGLE_CLASSNAME)) {
-            $li.addClass(TOGGLE_CLASSNAME);
-            $li.find(ARTICLE_CHILDREN).show();
-            lsItem($li);
+    var expand = function ($element) {
+        if ($element.length && !$element.hasClass(TOGGLE_CLASSNAME)) {
+            $element.addClass(TOGGLE_CLASSNAME);
+            lsItem($element);
         }
     }
 
@@ -124,7 +96,7 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
             })
             localStorage.setItem(LS_NAMESPACE, JSON.stringify(map));
         } else {
-            return $(CHAPTER).add('li').map(function (index, element) {
+            return $(CHAPTER).map(function (index, element) {
                 if (map[$(this).data('level')]) {
                     return this;
                 }
@@ -133,6 +105,6 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
     }
 
     gitbook.events.bind('page.change', function () {
-        init();
+        init()
     });
 });
