@@ -1,39 +1,35 @@
-/* .book .book-summary .chapter > .articles { */
-.book .book-summary .chapter ul {
-	overflow: hidden;
-	max-height: 0px;
-}
-
+/* 기본적으로 숨기기 */
+.book .book-summary .chapter ul,
 .book .book-summary .chapter li > ul {
 	overflow: hidden;
-	max-height: 0px !important;
+	max-height: 0px;
+	transition: max-height 0.3s ease; /* 부드러운 전환 효과 */
 }
 
-/* .book .book-summary .chapter.expanded > .articles { */
-.book .book-summary .chapter.expanded ul {
+/* 확장 시 보이기 */
+.book .book-summary .chapter.expanded ul,
+.book .book-summary .chapter li.expanded > ul {
 	max-height: 9999px;
 }
 
-.book .book-summary .chapter.expanded li.expanded > ul {
-	max-height: 9999px !important;
-}
-
+/* 트리거 버튼 스타일 */
 .book .book-summary .exc-trigger {
-	position: absolute;
-  	left: 12px;
-  	top: 12px;
-}
-
-.book .book-summary ul.summary li a,
-.book .book-summary ul.summary li span {
-	padding-left: 30px;
+	position: relative;
+	cursor: pointer;
+	padding-left: 10px;
 }
 
 .book .book-summary .exc-trigger:before {
-  	content: "\f105";
+	content: "\f105"; /* FontAwesome 아이콘 */
 }
 
-.book .book-summary .expanded > a .exc-trigger:before,
-.book .book-summary .expanded > span .exc-trigger:before {
-	content: "\f107";
+/* 확장된 상태에서 아이콘 변경 */
+.book .book-summary .expanded > .exc-trigger:before {
+	content: "\f107"; /* FontAwesome 아이콘 */
+}
+
+/* 링크와 스팬의 패딩 조정 */
+.book .book-summary ul.summary li a,
+.book .book-summary ul.summary li span {
+	padding-left: 30px;
 }

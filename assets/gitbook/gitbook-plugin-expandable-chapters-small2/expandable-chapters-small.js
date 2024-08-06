@@ -42,6 +42,23 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
                         })
                 );
         }
+
+        $(CHAPTER + ' li').each(function () {
+            var $li = $(this);
+            var $children = $li.find(ARTICLE_CHILDREN);
+            if ($children.length) {
+                $li
+                    .find('> a, > span')
+                    .css('cursor', 'pointer')
+                    .append(TRIGGER_TEMPLATE)
+                    .on('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggle($li);
+                    });
+            }
+        });
+
         expand(lsItem());
 
         // expand current selected chapter with it's parents
