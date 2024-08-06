@@ -1,34 +1,49 @@
-/* .book .book-summary .chapter > .articles { */
+/* Hide ul elements inside chapter and li by default */
 .book .book-summary .chapter ul,
 .book .book-summary .chapter li > ul {
 	overflow: hidden;
-	max-height: 0px;
+	max-height: 0;
+	transition: max-height 0.3s ease; /* Smooth transition */
 }
 
-/* .book .book-summary .chapter.expanded > .articles { */
-.book .book-summary .chapter.expanded > ul,
+/* Show ul elements inside chapter when chapter is expanded */
+.book .book-summary .chapter.expanded > ul {
+	max-height: 9999px; /* or a large value to show content */
+}
+
+/* Show ul elements inside li when li is expanded */
 .book .book-summary .chapter li.expanded > ul {
-	max-height: 9999px;
+	max-height: 9999px; /* or a large value to show content */
 }
 
-/* 트리거 버튼 스타일 */
+/* Style for the trigger button */
 .book .book-summary .exc-trigger {
 	position: absolute;
 	left: 12px;
 	top: 12px;
+	cursor: pointer; /* Pointer cursor to indicate clickability */
 }
 
+/* Ensure padding for list items aligns with the trigger */
 .book .book-summary ul.summary li a,
 .book .book-summary ul.summary li span {
 	padding-left: 30px;
 	position: relative;
 }
 
+/* Trigger icon for collapsed state */
 .book .book-summary .exc-trigger:before {
-	content: "\f105"; /* FontAwesome 아이콘 */
+	content: "\f105"; /* FontAwesome right arrow */
 }
 
-.book .book-summary .expanded > a .exc-trigger:before,
-.book .book-summary .expanded > span .exc-trigger:before {
-	content: "\f107";
+/* Trigger icon for expanded state */
+.book .book-summary .expanded > .exc-trigger:before {
+	content: "\f107"; /* FontAwesome down arrow */
+}
+
+/* Optional: Style for active chapters and list items */
+.book .book-summary .chapter.active,
+.book .book-summary .chapter li.active {
+	font-weight: bold;
+	color: #000; /* Or any color that indicates active state */
 }
