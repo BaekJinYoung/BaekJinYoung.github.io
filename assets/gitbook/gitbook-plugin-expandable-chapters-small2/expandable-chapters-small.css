@@ -6,10 +6,7 @@
 }
 
 /* .book .book-summary .chapter.expanded > .articles { */
-.book .book-summary .chapter.expanded {
-	max-height: 9999px;
-}
-
+.book .book-summary .chapter.expanded > ul,
 .book .book-summary .chapter li.expanded > ul {
 	max-height: 9999px;
 }
@@ -24,6 +21,7 @@
 .book .book-summary ul.summary li a,
 .book .book-summary ul.summary li span {
 	padding-left: 30px;
+	position: relative;
 }
 
 .book .book-summary .exc-trigger:before {
