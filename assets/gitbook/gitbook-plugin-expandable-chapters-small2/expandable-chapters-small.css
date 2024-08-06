@@ -1,33 +1,36 @@
-/* 기본적으로 숨기기 */
+/* .book .book-summary .chapter > .articles { */
 .book .book-summary .chapter ul,
 .book .book-summary .chapter li > ul {
 	overflow: hidden;
 	max-height: 0px;
-	transition: max-height 0.3s ease;
 }
 
-/* chapter 클릭 시 li 보이기 */
-.book .book-summary .chapter.expanded > ul {
-	max-height: 9999px; /* chapter의 하위 목록이 보이도록 설정 */
+/* .book .book-summary .chapter.expanded > .articles { */
+.book .book-summary .chapter.expanded {
+	max-height: 9999px;
 }
 
-/* li 클릭 시 ul 보이기 */
 .book .book-summary .chapter li.expanded > ul {
-	max-height: 9999px; /* li의 하위 목록이 보이도록 설정 */
+	max-height: 9999px;
 }
 
 /* 트리거 버튼 스타일 */
 .book .book-summary .exc-trigger {
-	position: relative;
-	cursor: pointer;
-	padding-left: 10px;
+	position: absolute;
+	left: 12px;
+	top: 12px;
+}
+
+.book .book-summary ul.summary li a,
+.book .book-summary ul.summary li span {
+	padding-left: 30px;
 }
 
 .book .book-summary .exc-trigger:before {
 	content: "\f105"; /* FontAwesome 아이콘 */
 }
 
-/* 확장된 상태에서 아이콘 변경 */
-.book .book-summary .expanded > .exc-trigger:before {
-	content: "\f107"; /* FontAwesome 아이콘 */
+.book .book-summary .expanded > a .exc-trigger:before,
+.book .book-summary .expanded > span .exc-trigger:before {
+	content: "\f107";
 }

@@ -16,39 +16,29 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
             articlesExpand = config[PLUGIN].articlesExpand || false;
         }
 
-        // Add trigger for chapter elements
-        $(CHAPTER).each(function () {
-            var $chapter = $(this);
-            var $children = $chapter.find(ARTICLE_CHILDREN);
-            if ($children.length) {
-                $chapter
-                    .find('> a, > span')
-                    .css('cursor', 'pointer')
-                    .append(TRIGGER_TEMPLATE)
-                    .on('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        toggleChapter($chapter);
-                    });
-            }
-        });
+        // Add triggers and event handlers to chapters and list items
+        $(ARTICLES)
+            .parent(CHAPTER)
+            .find(ARTICLE_CHILDREN)
+            .prev()
+            .css('cursor', 'pointer')
+            .on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggle($(e.target).closest(FOLDABLE));
+            })
+            .append(TRIGGER_TEMPLATE);
 
-        // Add trigger for li elements
-        $(CHAPTER + ' li').each(function () {
-            var $li = $(this);
-            var $children = $li.find(ARTICLE_CHILDREN);
-            if ($children.length) {
-                $li
-                    .find('> a, > span')
-                    .css('cursor', 'pointer')
-                    .append(TRIGGER_TEMPLATE)
-                    .on('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        toggleLi($li);
-                    });
-            }
-        });
+        $(CHAPTER + ' li')
+            .find(ARTICLE_CHILDREN)
+            .prev()
+            .css('cursor', 'pointer')
+            .on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleLi($(e.target).closest('li'));
+            })
+            .append(TRIGGER_TEMPLATE);
 
         expand(lsItem());
 
@@ -60,34 +50,36 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         activeChapter.find(ARTICLE_CHILDREN).closest(FOLDABLE).each(function () {
             expand($(this));
         });
+
+        // expand current selected li with its parents
+        var activeLi = $('li.active');
+        expandLi(activeLi);
+
+        // expand current selected li's children
+        activeLi.find(ARTICLE_CHILDREN).closest('li').each(function () {
+            expandLi($(this));
+        });
     }
 
-    var toggleChapter = function ($chapter) {
-        if ($chapter.hasClass('expanded')) {
-            collapseChapter($chapter);
+    var toggle = function ($chapter) {
+        if ($chapter.hasClass(TOGGLE_CLASSNAME)) {
+            collapse($chapter);
         } else {
-            expandChapter($chapter);
+            expand($chapter);
         }
     }
 
     var toggleLi = function ($li) {
-        if ($li.hasClass('expanded')) {
+        if ($li.hasClass(TOGGLE_CLASSNAME)) {
             collapseLi($li);
         } else {
             expandLi($li);
         }
     }
 
-    var collapseChapter = function ($chapter) {
+    var collapse = function ($chapter) {
         if ($chapter.length && $chapter.hasClass(TOGGLE_CLASSNAME)) {
             $chapter.removeClass(TOGGLE_CLASSNAME);
-            lsItem($chapter);
-        }
-    }
-
-    var expandChapter = function ($chapter) {
-        if ($chapter.length && !$chapter.hasClass(TOGGLE_CLASSNAME)) {
-            $chapter.addClass(TOGGLE_CLASSNAME);
             lsItem($chapter);
         }
     }
@@ -96,6 +88,13 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         if ($li.length && $li.hasClass(TOGGLE_CLASSNAME)) {
             $li.removeClass(TOGGLE_CLASSNAME);
             lsItem($li);
+        }
+    }
+
+    var expand = function ($chapter) {
+        if ($chapter.length && !$chapter.hasClass(TOGGLE_CLASSNAME)) {
+            $chapter.addClass(TOGGLE_CLASSNAME);
+            lsItem($chapter);
         }
     }
 
@@ -117,7 +116,7 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
             })
             localStorage.setItem(LS_NAMESPACE, JSON.stringify(map));
         } else {
-            return $(CHAPTER).map(function (index, element) {
+            return $(CHAPTER).add('li').map(function (index, element) {
                 if (map[$(this).data('level')]) {
                     return this;
                 }
