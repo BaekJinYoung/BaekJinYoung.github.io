@@ -9,26 +9,25 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         LS_NAMESPACE = 'expChapters';
 
     var init = function () {
-        // adding the trigger element to each ARTICLES parent and binding the event
         var config = gitbook.state.config.pluginsConfig || {};
         var articlesExpand = false;
         if (config && config[PLUGIN]) {
             articlesExpand = config[PLUGIN].articlesExpand || false;
         }
 
-        // Add triggers and event handlers to chapters and list items
-        $(ARTICLES)
-            .parent(CHAPTER)
-            .find(ARTICLE_CHILDREN)
+        // Add triggers and event handlers to chapters
+        $(CHAPTER)
+            .find('> ul')
             .prev()
             .css('cursor', 'pointer')
             .on('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                toggle($(e.target).closest(FOLDABLE));
+                toggleLi($(e.target).closest(CHAPTER).find('li'));
             })
             .append(TRIGGER_TEMPLATE);
 
+        // Add triggers and event handlers to list items
         $(CHAPTER + ' li')
             .find(ARTICLE_CHILDREN)
             .prev()
@@ -36,37 +35,19 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
             .on('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                toggleLi($(e.target).closest('li'));
+                toggleUl($(e.target).closest('li'));
             })
             .append(TRIGGER_TEMPLATE);
 
         expand(lsItem());
 
-        // expand current selected chapter with its parents
+        // Expand current selected chapter with its children
         var activeChapter = $(CHAPTER + '.active');
-        expand(activeChapter);
+        expandLi(activeChapter.find('li'));
 
-        // expand current selected chapter's children
-        activeChapter.find(ARTICLE_CHILDREN).closest(FOLDABLE).each(function () {
-            expand($(this));
-        });
-
-        // expand current selected li with its parents
+        // Expand current selected li with its children
         var activeLi = $('li.active');
-        expandLi(activeLi);
-
-        // expand current selected li's children
-        activeLi.find(ARTICLE_CHILDREN).closest('li').each(function () {
-            expandLi($(this));
-        });
-    }
-
-    var toggle = function ($chapter) {
-        if ($chapter.hasClass(TOGGLE_CLASSNAME)) {
-            collapse($chapter);
-        } else {
-            expand($chapter);
-        }
+        expandUl(activeLi);
     }
 
     var toggleLi = function ($li) {
@@ -77,10 +58,11 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         }
     }
 
-    var collapse = function ($chapter) {
-        if ($chapter.length && $chapter.hasClass(TOGGLE_CLASSNAME)) {
-            $chapter.removeClass(TOGGLE_CLASSNAME);
-            lsItem($chapter);
+    var toggleUl = function ($li) {
+        if ($li.hasClass(TOGGLE_CLASSNAME)) {
+            collapseUl($li);
+        } else {
+            expandUl($li);
         }
     }
 
@@ -91,14 +73,21 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         }
     }
 
-    var expand = function ($chapter) {
-        if ($chapter.length && !$chapter.hasClass(TOGGLE_CLASSNAME)) {
-            $chapter.addClass(TOGGLE_CLASSNAME);
-            lsItem($chapter);
+    var collapseUl = function ($li) {
+        if ($li.length && $li.hasClass(TOGGLE_CLASSNAME)) {
+            $li.removeClass(TOGGLE_CLASSNAME);
+            lsItem($li);
         }
     }
 
     var expandLi = function ($li) {
+        if ($li.length && !$li.hasClass(TOGGLE_CLASSNAME)) {
+            $li.addClass(TOGGLE_CLASSNAME);
+            lsItem($li);
+        }
+    }
+
+    var expandUl = function ($li) {
         if ($li.length && !$li.hasClass(TOGGLE_CLASSNAME)) {
             $li.addClass(TOGGLE_CLASSNAME);
             lsItem($li);
