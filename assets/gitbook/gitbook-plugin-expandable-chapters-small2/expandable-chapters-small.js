@@ -9,6 +9,7 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         LS_NAMESPACE = 'expChapters';
 
     var init = function () {
+        // adding the trigger element to each ARTICLES parent and binding the event
         var config = gitbook.state.config.pluginsConfig || {};
         var articlesExpand = false;
         if (config && config[PLUGIN]) {
@@ -16,18 +17,19 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         }
 
         // Add triggers and event handlers to chapters
-        $(CHAPTER)
-            .find('> ul')
+        $(ARTICLES)
+            .parent(CHAPTER)
+            .find(ARTICLE_CHILDREN)
             .prev()
             .css('cursor', 'pointer')
             .on('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                toggleLi($(e.target).closest(CHAPTER).find('li'));
+                toggle($(e.target).closest(CHAPTER));
             })
             .append(TRIGGER_TEMPLATE);
 
-        // Add triggers and event handlers to list items
+            // Add triggers and event handlers to list items
         $(CHAPTER + ' li')
             .find(ARTICLE_CHILDREN)
             .prev()
@@ -35,19 +37,40 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
             .on('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                toggleUl($(e.target).closest('li'));
+                toggleLi($(e.target).closest('li'));
             })
             .append(TRIGGER_TEMPLATE);
 
+        // Initially hide all articles and list items
+        $(ARTICLE_CHILDREN).hide();
+
         expand(lsItem());
 
-        // Expand current selected chapter with its children
+        // expand current selected chapter with its parents
         var activeChapter = $(CHAPTER + '.active');
-        expandLi(activeChapter.find('li'));
+        expand(activeChapter);
 
-        // Expand current selected li with its children
+        // expand current selected chapter's children
+        activeChapter.find(ARTICLE_CHILDREN).closest(FOLDABLE).each(function () {
+            expand($(this));
+        });
+
+        // expand current selected li with its parents
         var activeLi = $('li.active');
-        expandUl(activeLi);
+        expandLi(activeLi);
+
+        // expand current selected li's children
+        activeLi.find(ARTICLE_CHILDREN).closest('li').each(function () {
+            expandLi($(this));
+        });
+    }
+
+    var toggle = function ($chapter) {
+        if ($chapter.hasClass(TOGGLE_CLASSNAME)) {
+            collapse($chapter);
+        } else {
+            expand($chapter);
+        }
     }
 
     var toggleLi = function ($li) {
@@ -58,38 +81,34 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         }
     }
 
-    var toggleUl = function ($li) {
-        if ($li.hasClass(TOGGLE_CLASSNAME)) {
-            collapseUl($li);
-        } else {
-            expandUl($li);
+    var collapse = function ($chapter) {
+        if ($chapter.length && $chapter.hasClass(TOGGLE_CLASSNAME)) {
+            $chapter.removeClass(TOGGLE_CLASSNAME);
+            $chapter.find(ARTICLE_CHILDREN).hide();
+            lsItem($chapter);
         }
     }
 
     var collapseLi = function ($li) {
         if ($li.length && $li.hasClass(TOGGLE_CLASSNAME)) {
             $li.removeClass(TOGGLE_CLASSNAME);
+            $li.find(ARTICLE_CHILDREN).hide();
             lsItem($li);
         }
     }
 
-    var collapseUl = function ($li) {
-        if ($li.length && $li.hasClass(TOGGLE_CLASSNAME)) {
-            $li.removeClass(TOGGLE_CLASSNAME);
-            lsItem($li);
+    var expand = function ($chapter) {
+        if ($chapter.length && !$chapter.hasClass(TOGGLE_CLASSNAME)) {
+            $chapter.addClass(TOGGLE_CLASSNAME);
+            $chapter.find(ARTICLE_CHILDREN).show();
+            lsItem($chapter);
         }
     }
 
     var expandLi = function ($li) {
         if ($li.length && !$li.hasClass(TOGGLE_CLASSNAME)) {
             $li.addClass(TOGGLE_CLASSNAME);
-            lsItem($li);
-        }
-    }
-
-    var expandUl = function ($li) {
-        if ($li.length && !$li.hasClass(TOGGLE_CLASSNAME)) {
-            $li.addClass(TOGGLE_CLASSNAME);
+            $li.find(ARTICLE_CHILDREN).show();
             lsItem($li);
         }
     }

@@ -16,6 +16,12 @@
 	max-height: 9999px; /* or a large value to show content */
 }
 
+/* Ensure that only the clicked ul and its children are visible */
+.book .book-summary .chapter.expanded ul,
+.book .book-summary .chapter li.expanded ul {
+	display: block; /* Ensure display for expanded ul */
+}
+
 /* Style for the trigger button */
 .book .book-summary .exc-trigger {
 	position: absolute;
