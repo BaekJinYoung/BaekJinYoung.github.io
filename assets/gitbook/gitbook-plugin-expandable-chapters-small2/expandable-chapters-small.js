@@ -2,6 +2,7 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
     var PLUGIN = 'expandable-chapter-small2',
         TOGGLE_CLASSNAME = 'expanded',
         CHAPTER = '.chapter',
+        // ARTICLES = '.articles',
         ARTICLES = '.chapter ul',
         FOLDABLE = '.chapter, .chapter li',
         ARTICLE_CHILDREN = 'ul',
@@ -9,13 +10,12 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         LS_NAMESPACE = 'expChapters';
 
     var init = function () {
+        // adding the trigger element to each ARTICLES parent and binding the event
         var config = gitbook.state.config.pluginsConfig || {};
         var articlesExpand = false;
         if (config && config[PLUGIN]) {
             articlesExpand = config[PLUGIN].articlesExpand || false;
         }
-
-        // Adding the trigger element to each ARTICLES parent and binding the event
         if (articlesExpand) {
             $(ARTICLES)
                 .parent(CHAPTER)
@@ -42,54 +42,46 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
                         })
                 );
         }
-
-        // Adding click event to li elements to toggle their ul children
-        $(CHAPTER + ' li').css('cursor', 'pointer')
-            .on('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                toggle($(this).find(ARTICLE_CHILDREN));
-            });
-
         expand(lsItem());
 
-        // Expand current selected chapter with its parents
+        // expand current selected chapter with it's parents
         var activeChapter = $(CHAPTER + '.active');
         expand(activeChapter);
 
-        // Expand current selected chapter's children
+        // expand current selected chapter's children
+        // expand(activeChapter.parents(CHAPTER));
         activeChapter.find(ARTICLE_CHILDREN).closest(FOLDABLE).each(function () {
             expand($(this));
         });
     }
 
-    var toggle = function ($element) {
-        if ($element.hasClass('expanded')) {
-            collapse($element);
+    var toggle = function ($chapter) {
+        if ($chapter.hasClass('expanded')) {
+            collapse($chapter);
         } else {
-            expand($element);
+            expand($chapter);
         }
     }
 
-    var collapse = function ($element) {
-        if ($element.length && $element.hasClass(TOGGLE_CLASSNAME)) {
-            $element.removeClass(TOGGLE_CLASSNAME);
-            lsItem($element);
+    var collapse = function ($chapter) {
+        if ($chapter.length && $chapter.hasClass(TOGGLE_CLASSNAME)) {
+            $chapter.removeClass(TOGGLE_CLASSNAME);
+            lsItem($chapter);
         }
     }
 
-    var expand = function ($element) {
-        if ($element.length && !$element.hasClass(TOGGLE_CLASSNAME)) {
-            $element.addClass(TOGGLE_CLASSNAME);
-            lsItem($element);
+    var expand = function ($chapter) {
+        if ($chapter.length && !$chapter.hasClass(TOGGLE_CLASSNAME)) {
+            $chapter.addClass(TOGGLE_CLASSNAME);
+            lsItem($chapter);
         }
     }
 
     var lsItem = function () {
         var map = JSON.parse(localStorage.getItem(LS_NAMESPACE)) || {}
         if (arguments.length) {
-            var $elements = arguments[0];
-            $elements.each(function (index, element) {
+            var $chapters = arguments[0];
+            $chapters.each(function (index, element) {
                 var level = $(this).data('level');
                 var value = $(this).hasClass(TOGGLE_CLASSNAME);
                 map[level] = value;
