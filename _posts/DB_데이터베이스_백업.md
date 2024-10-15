@@ -15,7 +15,7 @@ MySQL/UBUNTU 데이터베이스 자동 백업 쉘 스크립트 Shell Script
 보통 현재 사용자의 홈 디렉토리에 생성한다.   
 
 ```bash
-mkdir /home/{사용자명}/db_backup
+mkdir /home/[사용자 이름]/db_backup
 
 # 예시: 사용자가 ubuntu일 경우
 mkdir /home/ubuntu/db_backup
@@ -26,7 +26,7 @@ mkdir는 디렉토리를 생성하는 명령어이다.
 ### 2. 백업 폴더 권한 설정
 
 ```bash
-chmod 755 /home/{사용자명}/db_backup
+chmod 755 /home/[사용자 이름]/db_backup
 
 # 예시: 사용자가 ubuntu일 경우
 chmod 755 /home/ubuntu/db_backup
@@ -46,7 +46,7 @@ chmod는 change mode의 약어로 시스템의 권한을 변경하는 명령어�
 ### 3. 백업을 수행할 스크립트 파일 생성
 
 ```bash
-sudo nano /home/{사용자}/db_backup/backup.sh
+sudo nano /home/[사용자 이름]/db_backup/backup.sh
 
 # 예시: 사용자가 ubuntu일 경우
 sudo nano /home/ubuntu/db_backup/backup.sh
@@ -62,7 +62,7 @@ shell로 작성할 로직은 다음과 같다.
 4. 덤프 파일 삭제
 5. 14일이 경과된 압축 파일 삭제
 
-아래는 사용자를 ubuntu로 가정하고 작성했다.    
+아래는 사용자를 ubuntu로 가정하고 작성한 스크립트다.    
 데이터베이스 이름과 백업 파일 저장 경로를 수정하여 사용하자.
 
 ```shell
@@ -135,8 +135,8 @@ echo "덤프 완료 : `date '+%Y-%m-%d %H:%M:%S'`"
 ### 5. 스크립트 파일 권한 설정
 
 ```bash
-sudo chown -R {사용자}:{사용자} /home/{사용자}/db_backup/backup.sh
-sudo chmod 700 /home/{사용자}/db_backup/backup.sh
+sudo chown -R [사용자 이름]:[사용자 이름] /home/[사용자 이름]/db_backup/backup.sh
+sudo chmod 700 /home/[사용자 이름]/db_backup/backup.sh
 
 # 예시: 사용자가 ubuntu인 경우
 sudo chown -R ubuntu:ubuntu /home/ubuntu/db_backup/backup.sh
@@ -156,7 +156,7 @@ crontab을 처음 사용할 경우 아래와 같이 텍스트 편집기를 선�
 나는 nano를 선택했다.
 
 ```bash
-no crontab for ubuntu - using an empty one
+no crontab for [사용자 이름] - using an empty one
 
 Select an editor.  To change later, run 'select-editor'.
   1. /bin/nano        <---- easiest
@@ -336,7 +336,7 @@ export Today="`date '+%Y-%m-%d'`"
 ... (중략) ...
 
 # 백업 파일 저장 경로
-BACKUP_DIR="/home/rond/db_backup"
+BACKUP_DIR="/home/[사용자 이름]/db_backup"
 
 ... (중략) ...
 
@@ -350,7 +350,7 @@ tar 명령어를 실행하기 전에 작업 디렉토리를 변경하여 상대 
 
 ```shell
 # 백업 파일 저장 경로
-BACKUP_DIR="/home/rond/db_backup"
+BACKUP_DIR="/home/[사용자 이름]/db_backup"
 
 ... (중략) ...
 
