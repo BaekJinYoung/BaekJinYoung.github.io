@@ -61,6 +61,7 @@ ordered_collections:
   - posts
   - pages
   - others
+  - git
 
 page_width: 800px
 
