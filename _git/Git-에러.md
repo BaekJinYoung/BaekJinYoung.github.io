@@ -1,12 +1,12 @@
 ---
-title: Git 에러 File public/video/sample-video.mp4 is 149.42 MB; this exceeds GitHub's file size limit of 100.00 MB
+title: Git/깃 에러
 author: Baek JinYoung
 date: 2024-10-25
 category: Jekyll
 layout: post
 ---
 
-Git 에러 remote: error: File public/video/sample-video.mp4 is 149.42 MB; this exceeds GitHub's file size limit of 100.00 MB
+Git/깃 에러 remote: error: File public/video/sample-video.mp4 is 149.42 MB; this exceeds GitHub's file size limit of 100.00 MB
 -
 
 프로젝트 안에 용량이 큰 파일을 넣고 푸시하자 다음과 같은 오류가 발생했다.    

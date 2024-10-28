@@ -50,21 +50,29 @@ exclude:
   - _drafts
 
 collections:
+  git:
+    output: true
+    permalink: /:collection/:path/
+  PHP-Laravel:
+    output: true
+    permalink: /:collection/:path/
+  Server:
+    output: true
+    permalink: /:collection/:path/
   pages:
     output: true
     permalink: /:collection/:path/
   others:
     output: true
     permalink: /:collection/:path/
-  git:
-    output: true
-    permalink: /:collection/:path/
 
 ordered_collections:
+  - git
+  - PHP-Laravel
+  - Server
   - posts
   - pages
   - others
-  - git
 
 page_width: 800px
 
