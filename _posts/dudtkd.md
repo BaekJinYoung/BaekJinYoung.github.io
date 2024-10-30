@@ -1,4 +1,13 @@
+Content Too Large
+Illuminate\Http\Exceptions\PostTooLargeException
+
+
+
 ```bash
+php --ini
+
+
+
 sudo nano /etc/php/8.2/fpm/php.ini
 
 upload_max_filesize = 100M
@@ -52,7 +61,7 @@ return [
     ...
 ];
 
-php artisan config:cache
+sudo php artisan config:cache
 
 ```
 
@@ -64,6 +73,6 @@ php_value[upload_max_filesize] = 100M
 php_value[post_max_size] = 100M
 
 
-sudo service php8.2-fpm restart
+sudo service php8.3-fpm restart
 
 ```

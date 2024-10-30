@@ -82,6 +82,5 @@ require [--dev] [--dry-run] [--prefer-source] [--prefer-dist] [--prefer-install 
 sudo chown $USER:$USER composer.json composer.lock
 sudo chown -R $USER:$USER ~/laravel
 ```
-
-
-
+https://graph.instagram.com/8906428979373592/media?fields=id,permalink,media_type,media_url,children%7Bmedia_url%7D,thumbnail_url&limit=8&access_token=IGQWROemZATc09rYk12eU5tQ1BoLXV3eENtOXBZAODctZADhDdnk4NGItRDlQRFFhSzRHSzcwWE43dy1pOVQ3Y2FDXzduQklNT0RGcFA1ZA2k2SFlEdzh0ZA1ZAFUldBNzlma1RRUDdIYVllcmhjZAwZDZD
+https://graph.instagram.com/8906428979373592/media?fields=id,permalink,media_type,media_url,children%7Bmedia_url%7D,thumbnail_url&limit=8&access_token=IGQWROemZATc09rYk12eU5tQ1BoLXV3eENtOXBZAODctZADhDdnk4NGItRDlQRFFhSzRHSzcwWE43dy1pOVQ3Y2FDXzduQklNT0RGcFA1ZA2k2SFlEdzh0ZA1ZAFUldBNzlma1RRUDdIYVllcmhjZAwZDZD

@@ -56,7 +56,7 @@ collections:
   PHP-Laravel:
     output: true
     permalink: /:collection/:path/
-  Server:
+  server:
     output: true
     permalink: /:collection/:path/
   pages:
@@ -69,7 +69,7 @@ collections:
 ordered_collections:
   - git
   - PHP-Laravel
-  - Server
+  - server
   - posts
   - pages
   - others
