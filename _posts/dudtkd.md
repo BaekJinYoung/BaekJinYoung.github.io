@@ -21,7 +21,7 @@ sudo nano /etc/nginx/nginx.conf
 
 http {
     ...
-    client_max_body_size 100M;
+    client_max_body_size 500M;
     ...
 }
 
@@ -29,7 +29,7 @@ sudo nano /etc/nginx/sites-available/default
 
 server {
     ...
-    client_max_body_size 100M;
+    client_max_body_size 500M;
     ...
 }
 
@@ -44,7 +44,7 @@ sudo service nginx restart
 ```bash
 sudo nano .env
 
-UPLOAD_MAX_SIZE=100M
+UPLOAD_MAX_SIZE=500M
 
 
 sudo nano config/filesystems.php
@@ -67,12 +67,12 @@ sudo php artisan config:cache
 
 ```bash
 # PHP-FPM 설정 파일 열기
-sudo nano /etc/php/8.2/fpm/pool.d/www.conf
+sudo nano /etc/php/8.4/fpm/pool.d/www.conf
 
 php_value[upload_max_filesize] = 100M
 php_value[post_max_size] = 100M
 
 
-sudo service php8.3-fpm restart
+sudo service php8.2-fpm restart
 
 ```

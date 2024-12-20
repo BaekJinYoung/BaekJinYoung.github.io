@@ -418,7 +418,7 @@ php artisan make:controller PopupController
 php artisan make:request PopupRequest
 
 
-php artisan make:migration add_column_to_popups --table=popups
+php artisan make:migration add_column_to_menus --table=menus
 php artisan make:migration drop_column_from_popups
 ```
 
@@ -802,9 +802,9 @@ member
 ```bash
 php artisan make:migration create_members_table --create=members
 
-php artisan make:controller MemberController
+php artisan make:controller EditorController
 
-php artisan make:model Member
+php artisan make:model Editor
 
 php artisan make:migration add_column_to_members --table=members
 
@@ -1496,7 +1496,23 @@ php artisan make:middleware LocaleMiddleware
 
 ```
 
+announcement
+-
 
+```bash
+php artisan make:migration create_announcements_table --create=announcements
+
+php artisan make:controller AnnouncementController
+
+php artisan make:model Announcement
+
+```
+
+```shell
+touch resources/views/admin/announcementIndex.blade.php
+touch resources/views/admin/announcementCreate.blade.php
+touch resources/views/admin/announcementEdit.blade.php
+```
 
 css
 -

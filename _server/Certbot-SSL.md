@@ -419,7 +419,7 @@ Saving debug log to /var/log/letsencrypt/letsencrypt.log
 How would you like to authenticate with the ACME CA?
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 1: Nginx Web Server plugin (nginx)
-2: Runs an HTTP server locally which serves the necessary validation files under the /.well-known/acme-challenge/ request path. Suitable if there is no HTTP server already running. HTTP challenge only (wildcards not supported). (standalone)
+2: Runs an HTTP server locally which serves theessary validation files under the /.well-known/acme-challenge/ request path. Suitable if there is no HTTP server already running. HTTP challenge only (wildcards not supported). (standalone)
 3: Saves the necessary validation files to a .well-known/acme-challenge/directory within the nominated webroot path. A seperate HTTP server must be running and serving files from the webroot path. HTTP challenge only (wildcards not supported). (webroot)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Select the appropriate number [1-3] then [enter] (press 'c' to cancel): 1
