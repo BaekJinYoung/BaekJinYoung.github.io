@@ -8,12 +8,12 @@ php --ini
 
 
 
-sudo nano /etc/php/8.2/fpm/php.ini
+sudo nano /etc/php/8.4/fpm/php.ini
 
 upload_max_filesize = 100M
 post_max_size = 100M
 
-sudo service php8.2-fpm restart
+sudo service php8.4-fpm restart
 ```
 
 ```bash
@@ -69,10 +69,10 @@ sudo php artisan config:cache
 # PHP-FPM 설정 파일 열기
 sudo nano /etc/php/8.4/fpm/pool.d/www.conf
 
-php_value[upload_max_filesize] = 100M
-php_value[post_max_size] = 100M
+php_value[upload_max_filesize] = 500M
+php_value[post_max_size] = 500M
 
 
-sudo service php8.2-fpm restart
+sudo service php8.4-fpm restart
 
 ```

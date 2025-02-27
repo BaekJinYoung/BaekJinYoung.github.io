@@ -22,4 +22,9 @@ out:     829▕     }
 out:       +38 vendor frames 
 out:   39  artisan:13
 out:       Illuminate\Foundation\Application::handleCommand() 
+
+
+
+
+sudo chown doublecapital:doublecapital .env
 ```
