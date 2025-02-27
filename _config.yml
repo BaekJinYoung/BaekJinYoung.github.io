@@ -1,86 +1,37 @@
-# Configurations
-title:            하늘을 우러러
-longtitle:        하늘을 우러러
-author:           Baek JinYoung
-email:            time121412@gmail.com
-description: >
-  Build Jekyll site with the GitBook style.
+title: no style, please! # name of the site
+author: Baek JinYoung # name of site's author
+email: time121412@gmail.com # email of site's author
+url: https://baekjinyoung.github.io # root address of the site
+#baseurl: "/no-style-please" # subpath of the site, e.g. "/blog" (leave it blank "" if you're site shouldn't use a subpath)
+description: > # description of the site (multiple lines allowed)
+  A (nearly) no-CSS, fast, minimalist Jekyll theme.
 
-version:          1.0
-gitbook_version:  3.2.3
+permalink: /:slug.html
 
-url:              'https://baekjinyoung.github.io'
-#baseurl:          '/jekyll-gitbook'
-rss:              RSS
+favicon: "logo.png" # name+extension of favicon (which must be put on the root folder)
+# goat_counter: "yoursitename" # put your GoatCounter name if you want to use GoatCounter analytics
 
-# bootstrap: use the remote theme for the site itself
-remote_theme: sighingnow/jekyll-gitbook
+remote_theme: riggraz/no-style-please # if you are using GitHub Pages, change it to remote_theme: riggraz/no-style-please
 
-toc:
-  enabled: true
-  h_min: 1
-  h_max: 3
+theme_config:
+  appearance: "auto" # can be "light", "dark" or "auto"
+  back_home_text: ".." # customize text for homepage link in post layout
+  date_format: "%Y-%m-%d" # customize how date is formatted
+  show_description: false # show blog description in home page
+  lowercase_titles: true # show titles in lowercase in lists
 
-# customize the link favicon in header, will be {{site.baseurl}}/{{site.favicon_path}}
-favicon_path:     /assets/gitbook/images/favicon.ico
-
-# markdown render engine.
-markdown:         kramdown
-kramdown:
-  auto_ids:               true
-  input:                  GFM
-  math_engine:            mathjax
-  smart_quotes:           lsquo,rsquo,ldquo,rdquo
-  toc_levels:             1..6
-  syntax_highlighter:     rouge
-  syntax_highlighter_opts:
-    guess_lang:           true
-
-syntax_highlighter_style: colorful
-
-markdown_ext:             markdown,mkdown,mkdn,mkd,md
-
-# Permalinks
-permalink:                /:categories/:title:output_ext
-
-# Disqus comments
-# disqushandler:            sighingnow
-
-exclude:
-  - _drafts
-
-collections:
-  git:
-    output: true
-    permalink: /:collection/:path/
-  PHP-Laravel:
-    output: true
-    permalink: /:collection/:path/
-  server:
-    output: true
-    permalink: /:collection/:path/
-  pages:
-    output: true
-    permalink: /:collection/:path/
-  others:
-    output: true
-    permalink: /:collection/:path/
-
-ordered_collections:
-  - git
-  - PHP-Laravel
-  - server
-  - posts
-  - pages
-  - others
-
-page_width: 800px
-
-destination:      ./_site
-incremental:      false
-regenerate:       true
+sass:
+  style: compressed
 
 plugins:
   - jekyll-feed
-  - jekyll-readme-index
-  - jemoji
+  - jekyll-seo-tag
+  - jektex
+
+jektex:
+  cache_dir: ".jektex-cache"
+  ignore: ["*.xml"]
+  silent: false
+  macros:
+    - ["\\Q", "\\mathbb{Q}"]
+    - ["\\C", "\\mathbb{C}"]
