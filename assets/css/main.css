@@ -116,17 +116,28 @@ code {
     color: #24292e;
     background-color: #f6f8fa;
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    font-size: 0.95rem;
     border-radius: 6px;
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: inherit;
+    font-size: .85em;
+    white-space: pre;
 }
 
 div.highlighter-rouge code {
     display: block;
-    padding: 1rem;
-    overflow-x: auto;
-    white-space: pre; /* 줄바꿈 제거 → 가독성 유지 */
+    white-space: pre-wrap;
     line-height: 1.6;
     border: 1px solid #d1d5da;
+    overflow: auto;
+    word-wrap: normal;
+    margin: 0;
+    padding: .85em 1em;
+    margin-bottom: 1.275em;
+    background: #f7f7f7;
 }
 
 blockquote {
