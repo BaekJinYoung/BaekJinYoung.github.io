@@ -1,21 +1,51 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: "en" }}">
+<html lang="{{ page.lang | default: 'en' }}">
 {%- include head.html -%}
-<body a="{{ site.theme_config.appearance | default: "auto" }}">
+<body a="{{ site.theme_config.appearance | default: 'auto' }}">
 <main class="page-content" aria-label="Content">
     <div class="w">
         {{ content }}
     </div>
 </main>
 
-{%-if site.goat_counter and jekyll.environment == "production"-%}
-{%-include goat_counter.html-%}
-{%-endif-%}
+{%- if site.goat_counter and jekyll.environment == "production" -%}
+{%- include goat_counter.html -%}
+{%- endif -%}
 
 {% if page.custom_js %}
 {% for js_file in page.custom_js %}
-<script type="text/javascript" src="{{ site.baseurl }}/assets/js/{{ js_file }}.js"></script>
+<script src="{{ site.baseurl }}/assets/js/{{ js_file }}.js"></script>
 {% endfor %}
 {% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("pre > code").forEach(function (codeBlock) {
+            // Skip if already wrapped
+            if (codeBlock.parentNode.classList.contains("code-block-wrapper")) return;
+
+            const button = document.createElement("button");
+            button.className = "copy-button";
+            button.innerText = "Copy";
+
+            const pre = codeBlock.parentNode;
+            const wrapper = document.createElement("div");
+            wrapper.className = "code-block-wrapper";
+
+            pre.parentNode.insertBefore(wrapper, pre);
+            wrapper.appendChild(button);
+            wrapper.appendChild(pre);
+
+            button.addEventListener("click", function () {
+                navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+                    button.innerText = "Copied!";
+                    setTimeout(() => {
+                        button.innerText = "Copy";
+                    }, 1500);
+                });
+            });
+        });
+    });
+</script>
 </body>
 </html>
