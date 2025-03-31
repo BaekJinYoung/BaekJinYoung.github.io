@@ -64,15 +64,13 @@ body {
 }
 
 h2, h3, h4, h5, h6 {
-    margin-top: 3rem;
+    margin-top: 1.275em;
+    margin-bottom: .85em;
+    font-weight: 700;
 }
 
 hr {
     margin: 2rem 0;
-}
-
-p {
-    margin: 1rem 0;
 }
 
 li {
