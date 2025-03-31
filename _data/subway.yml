@@ -1904,12 +1904,12 @@
   date: "2025-03-31"
 - station_name: 외대앞
   line_names: 01호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 용답
   line_names: 02호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 용두
   line_names: 02호선
   went: '[ ]'
