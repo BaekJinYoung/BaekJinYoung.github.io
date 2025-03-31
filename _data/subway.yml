@@ -1892,12 +1892,12 @@
   date: ''
 - station_name: 완정
   line_names: 인천2호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 왕길
   line_names: 인천2호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 왕십리
   line_names: 02호선,05호선,경의선,수인분당선
   went: "[x]"
@@ -1912,24 +1912,24 @@
   date: "2025-03-31"
 - station_name: 용두
   line_names: 02호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 용마산
   line_names: 07호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 용문
   line_names: 경의선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 용산
   line_names: 01호선,경의선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 용인중앙시장
   line_names: 용인경전철
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 우장산
   line_names: 05호선
   went: '[ ]'
