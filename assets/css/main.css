@@ -51,7 +51,6 @@ html {
 
 body {
     color: black;
-    font-family: monospace;
     font-size: 16px;
     line-height: 1.4;
     margin: 0;
@@ -102,7 +101,6 @@ hr:after {
 
 table {
     width: 100%;
-    table-layout: fixed;
 }
 
 table, th, td {
@@ -114,7 +112,6 @@ table, th, td {
 code {
     color: #24292e;
     background-color: #f6f8fa;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     border-radius: 6px;
     display: inline;
     max-width: initial;
