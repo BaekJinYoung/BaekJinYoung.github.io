@@ -1900,8 +1900,8 @@
   date: ''
 - station_name: 왕십리
   line_names: 02호선,05호선,경의선,수인분당선
-  went: '[x]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-31"
 - station_name: 외대앞
   line_names: 01호선
   went: '[ ]'
