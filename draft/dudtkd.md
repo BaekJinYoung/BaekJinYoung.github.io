@@ -69,8 +69,8 @@ sudo php artisan config:cache
 # PHP-FPM 설정 파일 열기
 sudo nano /etc/php/8.4/fpm/pool.d/www.conf
 
-php_value[upload_max_filesize] = 500M
-php_value[post_max_size] = 500M
+php_value[upload_max_filesize] = 100M
+php_value[post_max_size] = 100M
 
 
 sudo service php8.4-fpm restart

@@ -34,7 +34,7 @@ php artisan make:mail ExampleMail
 ```
 
 ```bash
-php artisan make:migration create_mail_table
+php artisan make:migration create_files_table
 php artisan migrate
 
 ```
