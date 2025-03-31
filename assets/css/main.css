@@ -102,12 +102,23 @@ hr:after {
 
 table {
     width: 100%;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    overflow: auto;
+    margin-top: 0;
+    margin-bottom: .85em;
+    font-size: inherit;
 }
 
 table, th, td {
     border: thin solid black;
     border-collapse: collapse;
+    border-spacing: 0;
     padding: 0.4rem;
+    display: table-cell;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
 }
 
 code {
