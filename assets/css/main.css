@@ -127,4 +127,12 @@ img {
     opacity: 1;
 }
 
+
+/* Rouge 기본 클래스 예시 */
+.highlight .k { color: #e36209; font-weight: bold; }   /* keyword - 주황 */
+.highlight .s { color: #032f62; }                      /* string - 파랑 */
+.highlight .n { color: #24292e; }                      /* name - 일반 텍스트 */
+.highlight .o { color: #d73a49; }                      /* operator - 연산자 */
+.highlight .c { color: #6a737d; font-style: italic; }  /* comment - 회색 */
+
 /*# sourceMappingURL=main.css.map */
