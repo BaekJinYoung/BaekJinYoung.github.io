@@ -102,7 +102,7 @@ hr:after {
 
 table {
     width: 100%;
-    display: table;
+    table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
     overflow: auto;
@@ -113,12 +113,9 @@ table {
 
 table, th, td {
     border: thin solid black;
-    border-collapse: collapse;
-    border-spacing: 0;
     padding: 0.4rem;
-    display: table-cell;
-    vertical-align: inherit;
-    unicode-bidi: isolate;
+    vertical-align: top;
+    text-align: left;
 }
 
 code {
