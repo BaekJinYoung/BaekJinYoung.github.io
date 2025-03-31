@@ -68,8 +68,8 @@
   date: ''
 - station_name: 강남구청
   line_names: 07호선,수인분당선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-11"
 - station_name: 강남대
   line_names: 용인경전철
   went: '[ ]'
@@ -88,8 +88,8 @@
   date: ''
 - station_name: 강변
   line_names: 02호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-02-23"
 - station_name: 강일
   line_names: 05호선
   went: '[ ]'
@@ -160,8 +160,8 @@
   date: ''
 - station_name: 경복궁
   line_names: 03호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-06"
 - station_name: 경인교대입구
   line_names: 인천선
   went: '[ ]'
@@ -388,8 +388,8 @@
   date: ''
 - station_name: 금호
   line_names: 03호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-06"
 - station_name: 기흥
   line_names: 수인분당선,용인경전철
   went: '[ ]'
@@ -440,8 +440,8 @@
   date: ''
 - station_name: 남부터미널
   line_names: 03호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-02-08"
 - station_name: 남성
   line_names: 07호선
   went: '[ ]'
@@ -652,8 +652,8 @@
   date: ''
 - station_name: 동대문
   line_names: 01호선,04호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-06"
 - station_name: 동대문역사문화공원
   line_names: 02호선,04호선,05호선
   went: '[ ]'
@@ -736,12 +736,12 @@
   date: ''
 - station_name: 디지털미디어시티
   line_names: 06호선,경의선,공항철도
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-30"
 - station_name: 뚝섬
   line_names: 02호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-10"
 - station_name: 마곡
   line_names: 05호선
   went: '[ ]'
@@ -1234,10 +1234,6 @@
   line_names: 경의선
   went: '[ ]'
   date: ''
-- station_name: 서울
-  line_names: GTX-A
-  went: '[ ]'
-  date: ''
 - station_name: 서울대벤처타운
   line_names: 신림선
   went: '[ ]'
@@ -1252,8 +1248,8 @@
   date: ''
 - station_name: 서울역
   line_names: 01호선,04호선,경의선,공항철도
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-19"
 - station_name: 서울지방병무청
   line_names: 신림선
   went: '[ ]'
@@ -1304,8 +1300,8 @@
   date: ''
 - station_name: 선릉
   line_names: 02호선,수인분당선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-02-13"
 - station_name: 선바위
   line_names: 04호선
   went: '[ ]'
@@ -1320,8 +1316,8 @@
   date: ''
 - station_name: 선정릉
   line_names: 09호선,수인분당선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-11"
 - station_name: 선학
   line_names: 인천선
   went: '[ ]'
@@ -1688,8 +1684,8 @@
   date: ''
 - station_name: 압구정로데오
   line_names: 수인분당선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-03-30"
 - station_name: 애오개
   line_names: 05호선
   went: '[ ]'
@@ -1852,8 +1848,8 @@
   date: ''
 - station_name: 오목교
   line_names: 05호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-04"
 - station_name: 오목천
   line_names: 수인분당선
   went: '[ ]'
@@ -1892,44 +1888,44 @@
   date: ''
 - station_name: 완정
   line_names: 인천2호선
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 왕길
   line_names: 인천2호선
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 왕십리
   line_names: 02호선,05호선,경의선,수인분당선
   went: "[x]"
   date: "2025-03-31"
 - station_name: 외대앞
   line_names: 01호선
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 용답
   line_names: 02호선
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 용두
   line_names: 02호선
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 용마산
   line_names: 07호선
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 용문
   line_names: 경의선
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 용산
   line_names: 01호선,경의선
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 용인중앙시장
   line_names: 용인경전철
-  went: "[x]"
-  date: "2025-03-31"
+  went: "[]"
+  date: ""
 - station_name: 우장산
   line_names: 05호선
   went: '[ ]'
@@ -2008,8 +2004,8 @@
   date: ''
 - station_name: 을지로3가
   line_names: 02호선,03호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-04"
 - station_name: 을지로4가
   line_names: 02호선,05호선
   went: '[ ]'
@@ -2020,8 +2016,8 @@
   date: ''
 - station_name: 응봉
   line_names: 경의선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-30"
 - station_name: 응암
   line_names: 06호선
   went: '[ ]'
@@ -2396,8 +2392,8 @@
   date: ''
 - station_name: 충무로
   line_names: 03호선,04호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-06"
 - station_name: 충정로
   line_names: 02호선,05호선
   went: '[ ]'
@@ -2500,16 +2496,16 @@
   date: ''
 - station_name: 한강진
   line_names: 06호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-04"
 - station_name: 한국항공대
   line_names: 경의선
   went: '[ ]'
   date: ''
 - station_name: 한남
   line_names: 경의선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-04"
 - station_name: 한대앞
   line_names: 04호선,수인분당선
   went: '[ ]'
@@ -2532,8 +2528,8 @@
   date: ''
 - station_name: 합정
   line_names: 02호선,06호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-04"
 - station_name: 행당
   line_names: 05호선
   went: '[ ]'
@@ -2544,8 +2540,8 @@
   date: ''
 - station_name: 혜화
   line_names: 04호선
-  went: '[ ]'
-  date: ''
+  went: "[x]"
+  date: "2025-01-26"
 - station_name: 호구포
   line_names: 수인분당선
   went: '[ ]'
