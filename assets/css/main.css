@@ -101,12 +101,17 @@ hr:after {
 
 table {
     width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-bottom: 1em;
+    word-break: break-word;
 }
 
-table, th, td {
+th, td {
     border: thin solid black;
-    border-collapse: collapse;
-    padding: 0.4rem;
+    padding: 0.6rem;
+    text-align: left;
+    vertical-align: top;
 }
 
 code {
