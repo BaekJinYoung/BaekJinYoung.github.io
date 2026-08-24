@@ -3,7 +3,7 @@ layout: home
 title: Portfolio
 ---
 
-**Backend Developer**
+**백진영 | Backend Developer**
 
 * Laravel/PHP 기반 웹 서비스의 백엔드 개발을 담당했습니다.
 
